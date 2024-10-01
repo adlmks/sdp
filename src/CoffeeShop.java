@@ -1,3 +1,4 @@
+// Singleton: Создание кофейни
 public class CoffeeShop {
     private static CoffeeShop instance;
 
@@ -10,7 +11,9 @@ public class CoffeeShop {
         return instance;
     }
 
+    // Метод для приема заказа на кофе
     public void takeOrder(String coffeeType) {
+        // Выводим сообщение о принятии заказа
         System.out.println("Order received for: " + coffeeType);
     }
 }
