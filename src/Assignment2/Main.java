@@ -1,14 +1,15 @@
 package Assignment2;
 
-import Assignment2.Bridge.*;
 import Assignment2.Facade.DocumentFacade;
 import Assignment2.Composite.DocumentGroup;
 import Assignment2.Flyweight.DocumentFactory;
 import Assignment2.Adapter.PDFDocumentAdapter;
+import Assignment2.Bridge.RenderEngine;
+import Assignment2.Bridge.SimpleRenderEngine;
+import Assignment2.Bridge.HighlightRenderEngine;
 
 public class Main {
     public static void main(String[] args) {
-
         DocumentFacade facade = new DocumentFacade();
 
         // 1. Использование Proxy для ленивой загрузки
@@ -38,12 +39,9 @@ public class Main {
         // 6. Использование Bridge для рендеринга
         System.out.println("\n6. Рендеринг документа через движок:");
         RenderEngine simpleEngine = new SimpleRenderEngine();
-
-        DocumentRenderer renderer = new SimpleDocumentRenderer(simpleEngine);
         facade.renderDocument("Report", simpleEngine);
 
         RenderEngine highlightEngine = new HighlightRenderEngine();
-        renderer = new SimpleDocumentRenderer(highlightEngine);
         facade.renderDocument("Report", highlightEngine);
     }
 }
