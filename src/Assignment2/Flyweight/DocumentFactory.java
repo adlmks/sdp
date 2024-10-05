@@ -1,7 +1,7 @@
 package Assignment2.Flyweight;
 
 import Assignment2.Document;
-import Assignment2.RealDocument;
+import Assignment2.Proxy.ProxyDocument;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class DocumentFactory {
     public static Document getDocument(String title) {
         Document document = documentMap.get(title);
         if (document == null) {
-            document = new RealDocument(title);
+            document = new ProxyDocument(title);
             documentMap.put(title, document);
         }
         return document;
