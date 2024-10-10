@@ -1,37 +1,98 @@
+import Assignment3.Chain.*;
+import Assignment3.Command.*;
+import Assignment3.Iterator.*;
+import Assignment3.Mediator.*;
+import Assignment3.Memento.*;
+
+/**
+ * The Main class demonstrates the Chain of Responsibility,
+ * Command, Iterator, Mediator and Memento patterns.
+ */
 public class Main {
     public static void main(String[] args) {
-        // Singleton: Создание кофейни
-        CoffeeShop coffeeShop = CoffeeShop.getInstance();
-        coffeeShop.takeOrder("Latte");
+        // Chain
+        PaymentHandler paymentMethods = new PaymentA();
+        paymentMethods  .setNext(new PaymentB())
+                        .setNext(new PaymentC());
 
-        // Factory Method: Создание кофе с помощью фабрик
-        CoffeeFactory latteFactory = new LatteFactory();
-        Coffee latte = latteFactory.createCoffee();
-        latte.prepare();
+        paymentMethods.handle(210);
 
-        // Abstract Factory: Создание ингредиентов для кофе
-        CoffeeIngredientsFactory latteIngredientsFactory = new LatteIngredientsFactory();
-        Milk latteMilk = latteIngredientsFactory.createMilk();
-        Syrup latteSyrup = latteIngredientsFactory.createSyrup();
+        System.out.println();
+        //Command
+        Television television = new Television();
+        RemoteControl remoteControl = new RemoteControl();
+        remoteControl   .setCommand("VolumeUp", new VolumeUpCommand(television))
+                        .setCommand("VolumeDown", new VolumeDownCommand(television))
+                        .setCommand("TurnOn", new TurnOnCommand(television))
+                        .setCommand("TurnOff", new TurnOffCommand(television))
+                        .setCommand("NextChannel", new NextChannelCommand(television))
+                        .setCommand("PrevChannel", new PreviousChannelCommand(television));
 
-        // Prototype: Клонирование заказа
-        CoffeeOrder latteOrder = new CoffeeOrder(latte, latteMilk, latteSyrup);
-        latteOrder.displayOrder();
+        remoteControl   .buttonPressed("TurnOn")
+                        .buttonPressed("VolumeUp")
+                        .buttonPressed("NextChannel")
+                        .buttonPressed("VolumeDown")
+                        .buttonPressed("PrevChannel")
+                        .buttonPressed("TurnOff")
+                        .buttonPressed("Unknown Command");
 
-        try {
-            CoffeeOrder clonedLatteOrder = latteOrder.clone();
-            clonedLatteOrder.displayOrder();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
+        System.out.println();
+
+        //Iterator
+        ListMovieCollection listCollection = new ListMovieCollection();
+        listCollection  .addMovie("Inception")
+                        .addMovie("The Matrix")
+                        .addMovie("Interstellar");
+
+        ArrayMovieCollection arrayCollection = new ArrayMovieCollection(3);
+        arrayCollection .addMovie("The Godfather")
+                        .addMovie("Pulp Fiction")
+                        .addMovie("The Dark Knight");
+
+        Iterator<String> listIterator = listCollection.createIterator();
+        System.out.println("Movies from List:");
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next());
         }
 
-        // Builder: Создание кастомного кофе
-        CustomCoffeeBuilder coffeeBuilder = new CustomCoffeeBuilder();
-        CoffeeOrder customOrder = coffeeBuilder
-                .setCoffee(new Cappuccino())
-                .setMilk(new AlmondMilk())
-                .setSyrup(new CaramelSyrup())
-                .build();
-        customOrder.displayOrder();
+        Iterator<String> arrayIterator = arrayCollection.createIterator();
+        System.out.println("\nMovies from Array:");
+        while (arrayIterator.hasNext()) {
+            System.out.println(arrayIterator.next());
+        }
+
+        System.out.println();
+
+        //Mediator
+
+        HomeMediator mediator = new HomeMediatorImpl();
+
+        Sensor temperatureSensor = new TemperatureSensor(mediator);
+        Sensor humiditySensor = new HumiditySensor(mediator);
+        Sensor lightSensor = new LightSensor(mediator);
+
+        temperatureSensor.sendData();
+        humiditySensor.sendData();
+        lightSensor.sendData();
+
+        mediator.printReport();
+
+        System.out.println();
+
+        // Memento
+
+        TextEditor editor = new TextEditor();
+        Caretaker caretaker = new Caretaker();
+
+        editor.addText("Hello, world!");
+        editor.showText();
+
+        caretaker.save(editor);
+
+        editor.addText(" This is the second sentence.");
+        editor.showText();
+
+        caretaker.restore(editor);
+        editor.showText();
     }
 }
