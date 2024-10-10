@@ -1,9 +1,7 @@
 package Assignment3.Command;
 
 /**
- * The Television class represents the receiver in the Command pattern.
- * It contains the logic to perform various actions like turning on/off,
- * adjusting volume, and changing channels.
+ Выполнение действий таких как: Включение и выключение, прибавка и убавка звука, переключение каналов
  */
 public class Television {
 

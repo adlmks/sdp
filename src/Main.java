@@ -4,10 +4,6 @@ import Assignment3.Iterator.*;
 import Assignment3.Mediator.*;
 import Assignment3.Memento.*;
 
-/**
- * The Main class demonstrates the Chain of Responsibility,
- * Command, Iterator, Mediator and Memento patterns.
- */
 public class Main {
     public static void main(String[] args) {
         // Chain
@@ -18,6 +14,8 @@ public class Main {
         paymentMethods.handle(210);
 
         System.out.println();
+
+
         //Command
         Television television = new Television();
         RemoteControl remoteControl = new RemoteControl();
@@ -37,6 +35,7 @@ public class Main {
                         .buttonPressed("Unknown Command");
 
         System.out.println();
+
 
         //Iterator
         ListMovieCollection listCollection = new ListMovieCollection();
@@ -63,8 +62,8 @@ public class Main {
 
         System.out.println();
 
-        //Mediator
 
+        //Mediator
         HomeMediator mediator = new HomeMediatorImpl();
 
         Sensor temperatureSensor = new TemperatureSensor(mediator);
@@ -79,8 +78,8 @@ public class Main {
 
         System.out.println();
 
-        // Memento
 
+        // Memento
         TextEditor editor = new TextEditor();
         Caretaker caretaker = new Caretaker();
 

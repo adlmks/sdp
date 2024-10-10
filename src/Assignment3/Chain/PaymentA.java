@@ -1,9 +1,8 @@
 package Assignment3.Chain;
 
 /**
- * PaymentA class represents one payment handler in the chain.
- * It handles payments up to 100 dollars.
- */
+ Класс PaymentA Обрабатывает платежи до 100$
+ **/
 public class PaymentA extends PaymentHandler{
     private float dollars = 100;
 

@@ -1,8 +1,7 @@
 package Assignment3.Mediator;
 
 /**
- * Implementation of the HomeMediator interface.
- * Stores and manages data from different sensors.
+ Хранение и управление данными с датчиков
  */
 public class HomeMediatorImpl implements HomeMediator {
     private String temperatureData = "";

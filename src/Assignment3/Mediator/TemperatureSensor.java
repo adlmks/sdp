@@ -1,7 +1,7 @@
 package Assignment3.Mediator;
 
 /**
- * Temperature sensor class that sends temperature data to the mediator.
+ Отправляет данные о температуре медиатору
  */
 public class TemperatureSensor implements Sensor{
     private HomeMediator mediator;

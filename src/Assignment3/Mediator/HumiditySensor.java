@@ -1,7 +1,7 @@
 package Assignment3.Mediator;
 
 /**
- * Humidity sensor class that sends humidity data to the mediator.
+ Отправляет данные о влажности медиатору.
  */
 public class HumiditySensor implements Sensor{
 

@@ -1,8 +1,7 @@
 package Assignment3.Chain;
 
 /**
- * PaymentC class represents the final payment handler in the chain.
- * It handles payments up to 1000 dollars.
+ Класс PaymentC обрабатывает платежи до 300$
  */
 public class PaymentC extends PaymentHandler{
     private float dollars = 1000;

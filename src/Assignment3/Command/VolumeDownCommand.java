@@ -1,8 +1,7 @@
 package Assignment3.Command;
 
 /**
- * Command class to lower the television volume.
- * This is a concrete implementation of the Command interface.
+ Класс для уменьшения звука
  */
 public class VolumeDownCommand implements Command {
     private Television television;

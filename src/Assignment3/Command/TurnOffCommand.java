@@ -1,8 +1,7 @@
 package Assignment3.Command;
 
 /**
- * Command class to turn off the television.
- * This is a concrete implementation of the Command interface.
+ Класс для выключения телевизора
  */
 public class TurnOffCommand implements Command {
     private Television television;

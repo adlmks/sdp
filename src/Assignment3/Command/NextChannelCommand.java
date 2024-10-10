@@ -1,8 +1,7 @@
 package Assignment3.Command;
 
 /**
- * Command class to change the television to the next channel.
- * This is a concrete implementation of the Command interface.
+ Класс Command предназначен для переключения телевизора на следующий канал
  */
 public class NextChannelCommand implements Command {
     private Television television;

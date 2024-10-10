@@ -2,9 +2,6 @@ package Assignment3.Iterator;
 
 import java.util.List;
 
-/**
- * An iterator for traversing a list of movies.
- */
 public class ListMovieIterator implements Iterator<String> {
 
     private List<String> movies;

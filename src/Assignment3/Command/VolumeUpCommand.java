@@ -1,8 +1,7 @@
 package Assignment3.Command;
 
 /**
- * Command class to raise the television volume.
- * This is a concrete implementation of the Command interface.
+ Класс для увеличения звука
  */
 public class VolumeUpCommand implements Command {
     private Television television;

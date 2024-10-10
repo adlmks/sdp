@@ -1,7 +1,7 @@
 package Assignment3.Mediator;
 
 /**
- * Light sensor class that sends light data to the mediator.
+ Отправляет данные о свете медиатору.
  */
 public class LightSensor implements Sensor{
     private HomeMediator mediator;

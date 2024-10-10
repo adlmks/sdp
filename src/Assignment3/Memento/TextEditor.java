@@ -2,8 +2,9 @@ package Assignment3.Memento;
 
 
 /**
- * The TextEditor class allows modification of text and provides
- * functionality to save and restore its state using the Memento pattern.
+ Класс TextEditor позволяет изменять текст и предоставляет
+ функциональность для сохранения и восстановления своего состояния
+ с использованием паттерна Memento.
  */
 public class TextEditor {
 
@@ -14,35 +15,23 @@ public class TextEditor {
     }
 
     /**
-     * Adds new text to the existing content.
-     *
-     * @param text The text to be appended.
+     Добавляет новый текст к существующему
      */
     public void addText(String text) {
         currentText.append(text);
     }
 
     /**
-     * Displays the current content of the editor.
+     Отображает текущее содержимое редактора.
      */
     public void showText() {
         System.out.println("Current Text: " + currentText.toString());
     }
 
-    /**
-     * Saves the current state of the editor as a TextMemento.
-     *
-     * @return A new TextMemento containing the current text.
-     */
     public TextMemento save() {
         return new TextMemento(currentText.toString());
     }
 
-    /**
-     * Restores the state of the editor from a given TextMemento.
-     *
-     * @param memento The TextMemento object that holds the saved state.
-     */
     public void restore(TextMemento memento) {
         currentText = new StringBuilder(memento.getText());
     }
