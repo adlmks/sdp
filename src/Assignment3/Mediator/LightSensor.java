@@ -1,19 +1,13 @@
 package Assignment3.Mediator;
 
-/**
- Отправляет данные о свете медиатору.
- */
-public class LightSensor implements Sensor{
-    private HomeMediator mediator;
-
+public class LightSensor extends Sensor {
     public LightSensor(HomeMediator mediator) {
-        this.mediator = mediator;
+        super(mediator);
     }
 
     @Override
     public void sendData() {
-        String data = "100 lux";
-        System.out.println("LightSensor: sending data - " + data);
-        mediator.collectData(data, this);
+        String data = "Light: 300 lux";
+        mediator.collectData(data);
     }
 }

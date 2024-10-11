@@ -1,10 +1,6 @@
 package Assignment3.Memento;
 
-/**
- Класс TextMemeto хранит текст редактора и предоставляет доступ к нему.
- */
-public class TextMemento {
-
+class TextMemento {
     private final String text;
 
     public TextMemento(String text) {
@@ -14,5 +10,4 @@ public class TextMemento {
     public String getText() {
         return text;
     }
-
 }

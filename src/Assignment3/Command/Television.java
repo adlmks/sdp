@@ -1,31 +1,27 @@
 package Assignment3.Command;
 
-/**
- Выполнение действий таких как: Включение и выключение, прибавка и убавка звука, переключение каналов
- */
 public class Television {
-
     public void turnOn() {
-        System.out.println("Television is turned on");
+        System.out.println("Television is ON.");
     }
 
     public void turnOff() {
-        System.out.println("Television is turned off");
+        System.out.println("Television is OFF.");
     }
 
     public void volumeUp() {
-        System.out.println("Television volume up");
+        System.out.println("Volume increased.");
     }
 
     public void volumeDown() {
-        System.out.println("Television volume down");
+        System.out.println("Volume decreased.");
     }
 
     public void nextChannel() {
-        System.out.println("Television next channel");
+        System.out.println("Switched to the next channel.");
     }
 
-    public void prevChannel() {
-        System.out.println("Television previous channel");
+    public void previousChannel() {
+        System.out.println("Switched to the previous channel.");
     }
 }

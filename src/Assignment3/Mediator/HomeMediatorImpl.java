@@ -1,29 +1,32 @@
 package Assignment3.Mediator;
 
-/**
- Хранение и управление данными с датчиков
- */
 public class HomeMediatorImpl implements HomeMediator {
-    private String temperatureData = "";
-    private String humidityData = "";
-    private String lightData = "";
+    private String temperatureData;
+    private String humidityData;
+    private String lightData;
 
     @Override
-    public void collectData(String data, Sensor sensor) {
-        if (sensor instanceof TemperatureSensor) {
+    public void collectData(String data) {
+        if (data.startsWith("Temperature:")) {
             temperatureData = data;
-        } else if (sensor instanceof HumiditySensor) {
+        } else if (data.startsWith("Humidity:")) {
             humidityData = data;
-        } else if (sensor instanceof LightSensor) {
+        } else if (data.startsWith("Light:")) {
             lightData = data;
         }
     }
 
     @Override
     public void printReport() {
-        System.out.println("Smart Home Report:");
-        System.out.println("Temperature: " + temperatureData);
-        System.out.println("Humidity: " + humidityData);
-        System.out.println("Light: " + lightData);
+        System.out.println("Home Report:");
+        System.out.println(temperatureData);
+        System.out.println(humidityData);
+        System.out.println(lightData);
+    }
+
+    @Override
+    public void reportData() {
+        // Здесь вы можете добавить логику для сбора и отображения данных
+        printReport(); // Например, просто выводим отчет
     }
 }

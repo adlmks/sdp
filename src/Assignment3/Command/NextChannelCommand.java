@@ -1,8 +1,5 @@
 package Assignment3.Command;
 
-/**
- Класс Command предназначен для переключения телевизора на следующий канал
- */
 public class NextChannelCommand implements Command {
     private Television television;
 
@@ -10,6 +7,7 @@ public class NextChannelCommand implements Command {
         this.television = television;
     }
 
+    @Override
     public void execute() {
         television.nextChannel();
     }

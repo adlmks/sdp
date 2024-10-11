@@ -1,19 +1,13 @@
 package Assignment3.Mediator;
 
-/**
- Отправляет данные о температуре медиатору
- */
-public class TemperatureSensor implements Sensor{
-    private HomeMediator mediator;
-
+public class TemperatureSensor extends Sensor {
     public TemperatureSensor(HomeMediator mediator) {
-        this.mediator = mediator;
+        super(mediator);
     }
 
     @Override
     public void sendData() {
-        String data = "30°C";
-        System.out.println("TemperatureSensor: sending data - " + data);
-        mediator.collectData(data, this);
+        String data = "Temperature: 22°C";
+        mediator.collectData(data);
     }
 }

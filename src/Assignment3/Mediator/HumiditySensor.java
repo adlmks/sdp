@@ -1,21 +1,13 @@
 package Assignment3.Mediator;
 
-/**
- Отправляет данные о влажности медиатору.
- */
-public class HumiditySensor implements Sensor{
-
-    private HomeMediator mediator;
-
+public class HumiditySensor extends Sensor {
     public HumiditySensor(HomeMediator mediator) {
-        this.mediator = mediator;
+        super(mediator);
     }
 
     @Override
     public void sendData() {
-        String data = "30%";
-        System.out.println("HumiditySensor: sending data - " + data);
-        mediator.collectData(data, this);
+        String data = "Humidity: 60%";
+        mediator.collectData(data);
     }
-
 }

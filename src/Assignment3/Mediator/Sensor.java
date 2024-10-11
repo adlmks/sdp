@@ -1,7 +1,11 @@
 package Assignment3.Mediator;
 
-public interface Sensor {
+abstract class Sensor {
+    protected HomeMediator mediator;
 
-    void sendData();
+    public Sensor(HomeMediator mediator) {
+        this.mediator = mediator;
+    }
 
+    public abstract void sendData();
 }

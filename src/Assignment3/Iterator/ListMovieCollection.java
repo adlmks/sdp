@@ -1,11 +1,9 @@
 package Assignment3.Iterator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList; // Импортируем ArrayList
+import java.util.Iterator; // Импортируем Iterator
+import java.util.List; // Импортируем List
 
-/**
- Предоставляет коллекцию фильмов, хранящуюся в списке.
- */
 public class ListMovieCollection {
     private List<String> movies;
 
@@ -13,15 +11,11 @@ public class ListMovieCollection {
         movies = new ArrayList<>();
     }
 
-    /**
-     Добавляет фильм в коллекцию
-     */
-    public ListMovieCollection addMovie(String movie) {
+    public void addMovie(String movie) {
         movies.add(movie);
-        return this;
     }
 
     public Iterator<String> createIterator() {
-        return new ListMovieIterator(movies);
+        return (Iterator<String>) new ListMovieIterator(movies);
     }
 }

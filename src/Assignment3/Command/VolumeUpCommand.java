@@ -1,8 +1,5 @@
 package Assignment3.Command;
 
-/**
- Класс для увеличения звука
- */
 public class VolumeUpCommand implements Command {
     private Television television;
 
@@ -10,6 +7,7 @@ public class VolumeUpCommand implements Command {
         this.television = television;
     }
 
+    @Override
     public void execute() {
         television.volumeUp();
     }

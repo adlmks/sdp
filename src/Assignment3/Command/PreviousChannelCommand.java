@@ -1,8 +1,5 @@
 package Assignment3.Command;
 
-/**
- Класс Command для переключения на предыдущий канал
- */
 public class PreviousChannelCommand implements Command {
     private Television television;
 
@@ -10,7 +7,8 @@ public class PreviousChannelCommand implements Command {
         this.television = television;
     }
 
+    @Override
     public void execute() {
-        television.prevChannel();
+        television.previousChannel();
     }
 }

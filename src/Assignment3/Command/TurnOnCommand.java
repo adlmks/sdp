@@ -1,8 +1,5 @@
 package Assignment3.Command;
 
-/**
- Класс для включения телевизора
- */
 public class TurnOnCommand implements Command {
     private Television television;
 
@@ -10,6 +7,7 @@ public class TurnOnCommand implements Command {
         this.television = television;
     }
 
+    @Override
     public void execute() {
         television.turnOn();
     }

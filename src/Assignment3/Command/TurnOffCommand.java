@@ -1,8 +1,5 @@
 package Assignment3.Command;
 
-/**
- Класс для выключения телевизора
- */
 public class TurnOffCommand implements Command {
     private Television television;
 
@@ -10,6 +7,7 @@ public class TurnOffCommand implements Command {
         this.television = television;
     }
 
+    @Override
     public void execute() {
         television.turnOff();
     }

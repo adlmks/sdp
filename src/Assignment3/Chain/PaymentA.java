@@ -1,20 +1,12 @@
 package Assignment3.Chain;
 
-/**
- Класс PaymentA Обрабатывает платежи до 100$
- **/
-public class PaymentA extends PaymentHandler{
-    private float dollars = 100;
-
+public class PaymentA extends PaymentHandler {
     @Override
-    public boolean handle(float money) {
-        if (dollars >= money) {
-            System.out.println("Payment A: You have enough money!");
-            dollars -= money;
-            return true;
+    public void handlePayment(int amount) {
+        if (amount < 100) {
+            System.out.println("PaymentA handled the payment of: " + amount);
+        } else if (nextHandler != null) {
+            nextHandler.handlePayment(amount);
         }
-        System.out.println("Payment A: You don't have enough money!");
-        if (next == null) return false;
-        return next.handle(money);
     }
 }

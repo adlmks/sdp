@@ -1,6 +1,8 @@
 package Assignment3.Iterator;
 
-class ArrayMovieIterator implements Iterator<String> {
+import java.util.Iterator;
+
+public class ArrayMovieIterator implements Iterator<String> {
     private String[] movies;
     private int position = 0;
 

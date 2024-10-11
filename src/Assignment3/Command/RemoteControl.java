@@ -1,26 +1,17 @@
 package Assignment3.Command;
 
-import java.util.HashMap;
-import java.util.Map;
+public class RemoteControl {
+    private Command[] commands;
 
-/**
- Класс RemoteControl, позволяет имитировать нажатие кнопок
- */
-public class RemoteControl{
-    private Map<String, Command> commands = new HashMap<>();
-
-    public RemoteControl setCommand(String action, Command command) {
-        commands.put(action, command);
-        return this;
+    public RemoteControl() {
+        commands = new Command[6];
     }
 
-    public RemoteControl buttonPressed(String action) {
-        Command command = commands.get(action);
-        if (command != null) {
-            command.execute();
-        } else {
-            System.out.println("Unknown command");
-        }
-        return this;
+    public void setCommand(int slot, Command command) {
+        commands[slot] = command;
+    }
+
+    public void pressButton(int slot) {
+        commands[slot].execute();
     }
 }

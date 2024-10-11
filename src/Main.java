@@ -4,94 +4,80 @@ import Assignment3.Iterator.*;
 import Assignment3.Mediator.*;
 import Assignment3.Memento.*;
 
+import java.util.Iterator;
+
+
 public class Main {
     public static void main(String[] args) {
-        // Chain
-        PaymentHandler paymentMethods = new PaymentA();
-        paymentMethods  .setNext(new PaymentB())
-                        .setNext(new PaymentC());
+        // Цепочка обязанностей
+        System.out.println("Chain of Responsibility:");
+        PaymentA paymentA = new PaymentA();
+        PaymentB paymentB = new PaymentB();
+        PaymentC paymentC = new PaymentC();
 
-        paymentMethods.handle(210);
+        paymentA.setNextHandler(paymentB);
+        paymentB.setNextHandler(paymentC);
 
-        System.out.println();
+        int amountToPay = 210;
+        paymentA.handlePayment(amountToPay);
 
-
-        //Command
+        // Команда
+        System.out.println("\nCommand:");
         Television television = new Television();
-        RemoteControl remoteControl = new RemoteControl();
-        remoteControl   .setCommand("VolumeUp", new VolumeUpCommand(television))
-                        .setCommand("VolumeDown", new VolumeDownCommand(television))
-                        .setCommand("TurnOn", new TurnOnCommand(television))
-                        .setCommand("TurnOff", new TurnOffCommand(television))
-                        .setCommand("NextChannel", new NextChannelCommand(television))
-                        .setCommand("PrevChannel", new PreviousChannelCommand(television));
+        RemoteControl remote = new RemoteControl();
 
-        remoteControl   .buttonPressed("TurnOn")
-                        .buttonPressed("VolumeUp")
-                        .buttonPressed("NextChannel")
-                        .buttonPressed("VolumeDown")
-                        .buttonPressed("PrevChannel")
-                        .buttonPressed("TurnOff")
-                        .buttonPressed("Unknown Command");
+        remote.setCommand(0, new TurnOnCommand(television));
+        remote.setCommand(1, new TurnOffCommand(television));
+        remote.setCommand(2, new VolumeUpCommand(television));
+        remote.setCommand(3, new VolumeDownCommand(television));
+        remote.setCommand(4, new NextChannelCommand(television));
+        remote.setCommand(5, new PreviousChannelCommand(television));
 
-        System.out.println();
+        remote.pressButton(0);
+        remote.pressButton(2);
+        remote.pressButton(4);
+        remote.pressButton(1);
 
-
-        //Iterator
+        // Итератор
+        System.out.println("\nIterator:");
         ListMovieCollection listCollection = new ListMovieCollection();
-        listCollection  .addMovie("Inception")
-                        .addMovie("The Matrix")
-                        .addMovie("Interstellar");
+        listCollection.addMovie("Movie A");
+        listCollection.addMovie("Movie B");
+        listCollection.addMovie("Movie C");
 
-        ArrayMovieCollection arrayCollection = new ArrayMovieCollection(3);
-        arrayCollection .addMovie("The Godfather")
-                        .addMovie("Pulp Fiction")
-                        .addMovie("The Dark Knight");
+        ArrayMovieCollection arrayCollection = new ArrayMovieCollection(new String[]{"Movie D", "Movie E", "Movie F"});
 
         Iterator<String> listIterator = listCollection.createIterator();
-        System.out.println("Movies from List:");
         while (listIterator.hasNext()) {
-            System.out.println(listIterator.next());
+            System.out.println("List Movie: " + listIterator.next());
         }
 
         Iterator<String> arrayIterator = arrayCollection.createIterator();
-        System.out.println("\nMovies from Array:");
         while (arrayIterator.hasNext()) {
-            System.out.println(arrayIterator.next());
+            System.out.println("Array Movie: " + arrayIterator.next());
         }
 
-        System.out.println();
-
-
-        //Mediator
+        // Посредник
+        System.out.println("\nMediator:");
         HomeMediator mediator = new HomeMediatorImpl();
+        new TemperatureSensor(mediator);
+        new HumiditySensor(mediator);
+        new LightSensor(mediator);
 
-        Sensor temperatureSensor = new TemperatureSensor(mediator);
-        Sensor humiditySensor = new HumiditySensor(mediator);
-        Sensor lightSensor = new LightSensor(mediator);
+        mediator.reportData();
 
-        temperatureSensor.sendData();
-        humiditySensor.sendData();
-        lightSensor.sendData();
-
-        mediator.printReport();
-
-        System.out.println();
-
-
-        // Memento
+        // Снимок
+        System.out.println("\nMemento:");
         TextEditor editor = new TextEditor();
         Caretaker caretaker = new Caretaker();
 
-        editor.addText("Hello, world!");
-        editor.showText();
-
+        editor.addText("Hello, ");
         caretaker.save(editor);
 
-        editor.addText(" This is the second sentence.");
-        editor.showText();
+        editor.addText("World!");
+        System.out.println("Current Text: " + editor.getText());
 
         caretaker.restore(editor);
-        editor.showText();
+        System.out.println("After restoring: " + editor.getText());
     }
 }
