@@ -26,7 +26,6 @@ public class HomeMediatorImpl implements HomeMediator {
 
     @Override
     public void reportData() {
-        // Здесь вы можете добавить логику для сбора и отображения данных
-        printReport(); // Например, просто выводим отчет
+        printReport();
     }
 }
