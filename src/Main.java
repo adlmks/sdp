@@ -60,11 +60,17 @@ public class Main {
         // Посредник
         System.out.println("\nMediator:");
         HomeMediator mediator = new HomeMediatorImpl();
-        new TemperatureSensor(mediator);
-        new HumiditySensor(mediator);
-        new LightSensor(mediator);
+        TemperatureSensor temperatureSensor = new TemperatureSensor(mediator);
+        HumiditySensor humiditySensor = new HumiditySensor(mediator);
+        LightSensor lightSensor = new LightSensor(mediator);
 
-        mediator.reportData();
+        // Отправляем данные от сенсоров
+        temperatureSensor.sendData();
+        humiditySensor.sendData();
+        lightSensor.sendData();
+
+        mediator.printReport();
+
 
         // Снимок
         System.out.println("\nMemento:");

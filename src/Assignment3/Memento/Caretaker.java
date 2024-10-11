@@ -1,15 +1,21 @@
 package Assignment3.Memento;
 
+import java.util.Stack;
+
 public class Caretaker {
-    private TextMemento memento;
+    private Stack<TextMemento> mementoStack;
+
+    public Caretaker() {
+        mementoStack = new Stack<>();
+    }
 
     public void save(TextEditor editor) {
-        memento = editor.save();
+        mementoStack.push(editor.save());
     }
 
     public void restore(TextEditor editor) {
-        if (memento != null) {
-            editor.restore(memento);
+        if (!mementoStack.isEmpty()) {
+            editor.restore(mementoStack.pop());
         }
     }
 }
